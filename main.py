@@ -1,14 +1,50 @@
-file_path = 'books/frankenstein.txt'
+def main():
+    book_path = "books/frankenstein.txt"
+    text = get_book_text(book_path)
+    num_words = get_num_words(text)
+    print(f"{num_words} words found in the document")
 
-def count_words_in_file(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            text = file.read()
-            words = text.split() 
-            word_count = len(words)
-            print(f'Total number of words: {word_count}')
-    except FileNotFoundError:
-        print(f"The file at {file_path} was not found.")
 
-count_words_in_file(file_path)
+def get_num_words(text):
+    words = text.split()
+    return len(words)
 
+
+def get_book_text(path):
+    with open(path) as f:
+        return f.read()
+
+
+main()
+
+
+def main():
+    book_path = "books/frankenstein.txt"
+    text = get_book_text(book_path)
+    num_words = get_num_words(text)
+    chars_dict = get_chars_dict(text)
+    print(chars_dict)
+
+
+def get_num_words(text):
+    words = text.split()
+    return len(words)
+
+
+def get_chars_dict(text):
+    chars = {}
+    for c in text:
+        lowered = c.lower()
+        if lowered in chars:
+            chars[lowered] += 1
+        else:
+            chars[lowered] = 1
+    return chars
+
+
+def get_book_text(path):
+    with open(path) as f:
+        return f.read()
+
+
+main()
